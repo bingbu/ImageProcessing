@@ -1,0 +1,17 @@
+Exercise 1
+
+Plot a circle on the image
+
+Fig2.19(a).bmp
+
+PlotCircle.c
+
+ 
+
+Exercise 2
+
+Reduce the image into a 2-level, 255 and 0, image.
+
+Fig2.19(a).bmp
+
+two_levels.c

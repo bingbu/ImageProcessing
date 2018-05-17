@@ -1,0 +1,43 @@
+Homework 2, Due 2018/4/11
+
+Problem 1
+
+Zooming and Shrinking Images by Bilinear Interpolation
+
+(a) Write a computer program capable of zooming and shrinking an image by
+
+bilinear interpolation. The input to your program is the desired size of the resulting
+
+image in the horizontal and vertical direction. You may ignore aliasing effects.
+
+(b) Download Fig. 2.19(a) and use your program to shrink this image from 1024 x
+
+1024 to 256 x 256 pixels.
+
+(c) Use your program to zoom the image in (b) back to 1024 x 1024. Explain the
+
+reasons for their differences.
+
+Fig2.19(a).bmp
+
+ 
+
+Problem 2
+
+Difference of Two Images
+
+(Page 77) Write a computer program to set to zero the least significant bit of every pixel in an image, subtract this image from the original image, and then scale the difference image to the range [0, 255].
+
+Fig0227(a)(washington_infrared).bmp
+
+ 
+
+Problem 3
+
+Rotate an image
+
+Write a computer program to obtain an image rotated 21 degrees using nearest neighbor interpolation
+
+to assign intensity values to the spatiaaly transformed pixels.  (Page 89)
+
+Fig0236(a)(letter_T).bmp

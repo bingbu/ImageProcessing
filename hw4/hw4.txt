@@ -1,0 +1,41 @@
+Homework 4, Due 2018/5/30
+
+ Problem 1
+
+Blurring prior to resizing
+
+Write a program to blur and then resize the image. (Figure 4.17, Page 231)
+
+(a) Resize the image to 50% of its original size using the resizing method in Exercise 1 of Lab 1.
+
+(b) Blur the image with a 3*3 averaging filter using the Averaging Filter in Lab 3, and then resize the image to 50% of its original size using the resizing method in Exercise 1 of Lab 1.
+
+Fig0417(a).bmp
+
+ 
+
+Problem 2
+
+Moiré patterns
+
+Write a program to show Moiré patterns. (Figure 4.20, Page 234)
+
+(a) Rotate the image 5 degrees clockwise using the result of Problem 2 in Homework 2.
+
+(b) Multiply the original image and (a) to obtain Moiré patterns. (Sample result: Lines5.bmp)
+
+Lines.bmp
+
+ 
+
+Problem 3
+
+Show the spectrum and phase
+
+Write a program to perform to show the spectrum and phase of a rotated rectangle. (Figure 4.25(c), Page 247)
+
+(a) Rotate the rectangle using the result of Problem 2 in Homework 2.
+
+(b) Show the spectrum and phase.
+
+Fig0424(a).bmp

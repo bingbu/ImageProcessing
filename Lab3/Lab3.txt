@@ -1,0 +1,45 @@
+Lab 3
+
+Exercise 1
+
+Histogram Equalization
+
+(a) Write a computer program for computing the histogram of an image.
+
+(b) Implement the histogram equalization technique discussed in Section 3.3.1.
+
+(c) Download Fig. 3.20 and perform histogram equalization on it.
+
+Fig0320(1)(top_left).bmp
+
+Fig0320(2)(2nd_from_top).bmp
+
+Fig0320(3)(third_from_top).bmp
+
+Fig0320(4)(bottom_left).bmp
+
+histo.c
+
+ 
+
+Exercise 2
+
+Averaging Filter
+
+Write a computer program of smoothing with square averaging filter masks of size m = 3, 5, 9, 15, and 35, respectively. (Figure 3.33, Page 155).
+
+Fig0333(a).bmp
+
+Averaging.c
+
+ 
+
+Exercise 3
+
+Roberts Cross Gradient Operators
+
+Write a computer program performing the Roberts cross gradient operator on Figure 3.42.  (Page 168)
+
+Fig0342(a).bmp
+
+Roberts.c

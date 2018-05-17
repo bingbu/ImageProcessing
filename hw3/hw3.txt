@@ -1,0 +1,53 @@
+Homework 3, Due 5/2
+
+ 
+
+Problem 1
+
+Histogram Matching
+
+Specify a desired histogram as Figure 3.25(a) on Page 138 and then perform the histogram matching.
+
+Fig3.23(a).bmp
+
+ 
+
+Problem 2
+
+Enhancement Using the Laplacian
+
+Write a program to perform unsharp masking. (Figure 3.38, Page 163) (注意overflow)
+
+(a) Laplacian without scaling.
+
+(b) Laplacian with scaling.
+
+(c) Image sharpened using the mask in Fig. 3.37(a). (中間改5)
+
+(d) Image sharpened using the mask in Fig. 3.37(b). (中間改9)
+
+Fig0338(a).bmp
+
+ 
+
+Problem 3
+
+Combining Spatial Enhancement Methods
+
+Write a program to perform a combination of spatial enhancements. (Figure 3.43, Page 170)
+
+(a) Fig3.43(a).bmp
+
+(b) Laplacian of (a).
+
+(c) Adding (a) and (b)
+
+(d) Sobel gradient of (a) (take Sobel fomula)
+
+(e) Smoothed with a 5*5 averaging filter of (d)
+
+(f) Product of (c) and (e)
+
+(g) Sum of (a) and (f)
+
+(h) Applying a power-law transformation to (g) (take a gamma)

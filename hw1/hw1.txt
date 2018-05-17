@@ -1,0 +1,35 @@
+Homework 1, Due 2018/3/28
+
+Problem 1
+
+Locating the pixels in a BMP Image
+
+Write a computer program to plot an equilateral triangle of sides 400 with gray level 255 and the top vertex at the coordinate (300, 500) on Fig. 2.21(a).
+
+Fig2.21(a).bmp
+
+ 
+
+Problem 2
+
+Rotating a BMP Image
+
+Write a computer program to rotate Fig. 2.21(a) 90 degrees clockwise about the center.
+
+Fig2.21(a).bmp
+
+ 
+
+Problem 3
+
+Reducing the Number of Gray Levels in an Image
+
+(a) Write a computer program capable of reducing the number of gray levels in a
+
+image from 256 to 2, in integer powers of 2. The desired number of gray levels
+
+needs to be a variable input to your program.
+
+(b) Download Fig. 2.21(a) and duplicate the results shown in Fig. 2.21 of the book.
+
+Fig2.21(a).bmp

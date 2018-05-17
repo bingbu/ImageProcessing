@@ -1,0 +1,6 @@
+{
+    "clang.cflags": [
+        "-std=c89"
+    ],
+    "git.enabled": true,
+}

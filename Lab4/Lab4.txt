@@ -1,0 +1,47 @@
+Lab 4
+
+Exercise 1
+
+Aliasing on resampled images
+
+Write a computer program to resize the image to 50% of its original size by pixel deletion (Figure 4.17, Page 231).
+
+Fig0417(a).bmp
+
+subsample.c
+
+ 
+
+Exercise 2
+
+Spectrum and phase
+
+Write a computer program to show the spectrum and phase of an image (Figure 4.24, Page 246).
+
+Fig0424(a).bmp
+
+Fig0425(a).bmp
+
+Fig0427(a).bmp
+
+spectrum.c
+
+fft.h
+
+fft.c
+
+ 
+
+Exercise 3
+
+Reconstruction using only spectrum or phase
+
+Write a computer program performing the reconstructions using only the spectrum or phase (Figure 4.27, Page 249)
+
+Fig0427(a).bmp 
+
+reconstruct.c
+
+fft.h
+
+fft.c

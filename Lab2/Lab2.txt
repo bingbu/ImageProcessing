@@ -1,0 +1,43 @@
+Exercise 1
+
+Zooming and Shrinking Images by Pixel Replication
+
+(a) Write a computer program capable of zooming and shrinking an image by pixel replication. Assume that the desired zoom/shrink factors are integers. You may ignore aliasing effects. You will need to download Fig. 2.19(a).
+
+(b) Download Fig. 2.19 (a) and use your program to shrink the image from 1024 x 1024 to 256 x 256 pixels.
+
+(c) Use your program to zoom the image in (b) back to 1024 x 1024. Explain the reasons for their differences.
+
+Fig2.19(a).bmp
+
+subsample.c
+
+resample.c
+
+ 
+
+Exercise 2
+
+Arithmetic Operations
+
+Write a computer program capable of performing the four arithmetic operations between two images. This project is generic, in the sense that it will be used in other projects to follow. (See comments on pages 112 and 116 regarding scaling).
+
+Fig3.08(a).bmp
+
+new2.bmp
+
+arithmetic.c
+
+ 
+
+ Exercise 3
+
+Affine Transformations
+
+(Page 88) Write a computer program to perform affine transformations.
+
+Fig0236(a)(letter_T).bmp
+
+shear.c
+
+ 
