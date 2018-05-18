@@ -49,7 +49,7 @@ int main()
    int i, j, k, p, biWidth4, newbiWidth4, newbiHeight;
 
    /* �}���ɮ� */
-   if( ( input_file = fopen("Fig0417(a).bmp","rb") ) == NULL ){
+   if( ( input_file = fopen("Fig0417-a.bmp","rb") ) == NULL ){
       fprintf(stderr,"File can't open.\n");
       exit(0);
    }
@@ -159,7 +159,7 @@ int main()
 
    //
    /* �}�ҷs�ɮ� */
-   if( ( output_file = fopen("resize(a).bmp","wb") ) == NULL ){
+   if( ( output_file = fopen("resize-a.bmp","wb") ) == NULL ){
       fprintf(stderr,"Output file can't open.\n");
       exit(0);
    }
@@ -172,7 +172,7 @@ int main()
    fwrite(new_data, newbiWidth4*newbiHeight, 1, output_file);
  
    fclose (output_file);
-    system("pause");
+    //system("pause");
    return 0;
 }
 
