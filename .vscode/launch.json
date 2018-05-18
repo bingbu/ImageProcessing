@@ -2,6 +2,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.o",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd":"${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build",
+        },
+        {
             "name": "(win gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
@@ -12,12 +33,7 @@
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",
-            "windows":{
-                "miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.2.0-posix-dwarf-rt_v5-rev1\\mingw32\\bin\\gdb.exe",
-            },
-            "linux":{
-                "miDebuggerPath": "/usr/bin/gdb",
-            },
+            "miDebuggerPath": "C:\\Program Files (x86)\\mingw-w64\\i686-7.2.0-posix-dwarf-rt_v5-rev1\\mingw32\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

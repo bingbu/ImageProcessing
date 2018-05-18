@@ -7,12 +7,22 @@
             "label": "build",
             "type": "shell",
             "command": "gcc",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.exe"
-            ],
+            "windows": {
+                "args": [
+                    "-g",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}/${fileBasenameNoExtension}.exe"
+                ],
+            },
+            "linux": {
+                "args": [
+                    "-g",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}/${fileBasenameNoExtension}.o"
+                ],
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true

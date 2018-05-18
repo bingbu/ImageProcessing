@@ -172,7 +172,7 @@ int main()
    fwrite(new_data, newbiWidth4*newbiHeight, 1, output_file);
  
    fclose (output_file);
-  
+    system("pause");
    return 0;
 }
 
