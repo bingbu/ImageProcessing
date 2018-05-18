@@ -136,7 +136,7 @@ int main()
    // Process the file
     // 3*3 average filter
     for(i=1; i< biHeight-1; i++){
-        k = biWidth*4;
+        k = i* ((biWidth*1 +3)/4 *4);
         for(j=1; j<biWidth-1; j++){
             data1[k] = (int)(data[k-biWidth-1]+data[k-biWidth]+data[k-biWidth+1]+data[k-1]+data[k]+data[k+1]+data[k+biWidth-1]+data[k+biWidth]+data[k+biWidth+1])/9;
             k++;
