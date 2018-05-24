@@ -42,7 +42,7 @@ int main()
       exit(0);
    }
 
-   ReadImageData("Fig2.21(a).bmp", bmpfileheader1, bmpinfoheader1, color_table1, data1);
+   ReadImageData("Fig2.21-a.bmp", bmpfileheader1, bmpinfoheader1, color_table1, data1);
    biWidth           =   GET_4B(bmpinfoheader1,4);
    biHeight          =   GET_4B(bmpinfoheader1,8);
 

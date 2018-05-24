@@ -34,13 +34,13 @@ int main()
    int i, j, k, temp, Ri, Rj, Rk;
    int histo_table[256] = { 0 };
 
-   i = ReadDataSize("Fig2.21(a).bmp");
+   i = ReadDataSize("Fig2.21-a.bmp");
    data1 = (U_CHAR *)malloc( i );
    if (data1 == NULL) {
       exit(0);
    }
 
-   ReadImageData("Fig2.21(a).bmp", bmpfileheader1, bmpinfoheader1, color_table1, data1);
+   ReadImageData("Fig2.21-a.bmp", bmpfileheader1, bmpinfoheader1, color_table1, data1);
    biWidth           =   GET_4B(bmpinfoheader1,4);
    biHeight          =   GET_4B(bmpinfoheader1,8);
 
