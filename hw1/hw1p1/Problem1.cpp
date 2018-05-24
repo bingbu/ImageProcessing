@@ -36,7 +36,7 @@ int main()
    int i, j, k, temp;
    int histo_table[256] = { 0 };
 
-   i = ReadDataSize("Fig2.21(a).bmp");
+   i = ReadDataSize("Fig2.21-a.bmp");
    data1 = (U_CHAR *)malloc( i );
    if (data1 == NULL) {
       exit(0);
