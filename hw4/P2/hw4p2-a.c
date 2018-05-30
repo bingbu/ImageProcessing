@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<math.h>
 
 typedef long INT32;
 typedef unsigned short int INT16;
@@ -15,7 +16,8 @@ typedef unsigned char U_CHAR;
 #define FREAD(file,buf,sizeofbuf)  \
   ((size_t) fread((void *) (buf), (size_t) 1, (size_t) (sizeofbuf), (file)))
 
-#define RATIO 2
+#define Pi 3.1415926
+#define Degree Pi*(5)/180
 
 void set_2B(U_CHAR *array, int offset, INT16 value);
 void set_4B(U_CHAR *array, int offset, INT32 value);
@@ -28,9 +30,6 @@ int main()
    
    U_CHAR bmpfileheader[14] = { 0 } ;
    U_CHAR bmpinfoheader[40] = { 0 } ;
-
-   U_CHAR new_bmpfileheader[14] = { 0 } ;
-   U_CHAR new_bmpinfoheader[40] = { 0 } ;
 
    INT32 FileSize = 0 ;
    INT32 bfOffBits =0 ;
@@ -45,11 +44,11 @@ int main()
    INT32 biClrUsed = 0 ;
    INT32 biClrImp = 0 ;
 
-   U_CHAR *data, *data1, *new_data, color_table[1024];
-   int i, j, k, p, biWidth4, newbiWidth4, newbiHeight;
+   U_CHAR *data, *new_data, color_table[1024];
+   int i, j, k;
 
    /* �}���ɮ� */
-   if( ( input_file = fopen("Fig0417-a.bmp","rb") ) == NULL ){
+   if( ( input_file = fopen("Lines.bmp","rb") ) == NULL ){
       fprintf(stderr,"File can't open.\n");
       exit(0);
    }
@@ -102,111 +101,78 @@ int main()
 
    FREAD(input_file,color_table,1024);
    //
-   biWidth4 = ((biWidth*1 +3)/4 *4);
-   newbiWidth4 = ((biWidth/RATIO +3)/4 *4);
-   newbiHeight = biHeight/RATIO;
 
-   data = (U_CHAR *)malloc( biWidth4*biHeight*1 );
+   data = (U_CHAR *)malloc( biWidth*biHeight );
    if (data == NULL) {
       fprintf(stderr,"Insufficient memory.\n");
       fclose (input_file);
       exit(0);
    }
-   fseek(input_file, bfOffBits, SEEK_SET);
-   FREAD(input_file, data, biWidth4 * biHeight * 1);
-
-   data1 = (U_CHAR *)malloc( biWidth4*biHeight*1 );
-   if (data1 == NULL) {
-      fprintf(stderr,"Insufficient memory.\n");
-      fclose (input_file);
-      exit(0);
-   }
+   
    fseek(input_file,bfOffBits,SEEK_SET);
-   FREAD(input_file,data1,biWidth4*biHeight*1);
-   // 
-   fclose (input_file);
+   FREAD(input_file,data,biWidth*biHeight);
 
-   //
-   new_data = (U_CHAR *)malloc( newbiWidth4*newbiHeight );
+   fclose(input_file);
+
+   new_data = (U_CHAR *)malloc( biWidth*biHeight );
    if (new_data == NULL) {
       fprintf(stderr,"Insufficient memory.\n");
+      fclose(input_file);
       exit(0);
    }
 
    // Process the file
-    // 3*3 average filter
-    for(i=1; i< biHeight-1; i++){
-        k = i* ((biWidth*1 +3)/4 *4);
-        for(j=1; j<biWidth-1; j++){
-            data1[k] = (int)(data[k-biWidth-1]+data[k-biWidth]+data[k-biWidth+1]+data[k-1]+data[k]+data[k+1]+data[k+biWidth-1]+data[k+biWidth]+data[k+biWidth+1])/9;
-            k++;
-        }
-    }
-    // resize 50%
-   p = 0;
    for (i=0; i < biHeight; i++)
    {
-       if (i%RATIO == 0)
-	   {
-			k = i* biWidth4;
-			p = (i/RATIO)*newbiWidth4;
-			for (j=0; j < biWidth; j++)
-			{
-				if (j%RATIO == 0)
-				{
-					new_data[p] = data1[k];
-					p = p+1;
-				}
-	            k = k+1;
-			}
-       }
+        k = i* ((biWidth*1 +3)/4 *4);
+		for (j=0; j < biWidth; j++)
+		{
+            double midj = (i-biHeight/2);
+            double midi = (j-biWidth/2);
+            int newi = (midj*cos(Degree) - midi*sin(Degree)) + biHeight/2;
+            int newj = (midj*sin(Degree) + midi*cos(Degree)) + biWidth/2;
+            if(newi<0 || newj<0 || newi>biHeight || newj>biWidth)
+              continue;
+            int newk = newi*((biWidth +3)/4 *4) + newj;
+            
+            new_data[newk] = data[k];
+
+            k = k+1;
+		}
    }
-      
-   // new file header
-   for (i=0; i < 14; i++)
-		new_bmpfileheader[i] = bmpfileheader[i];
-   for (i=0; i < 40; i++)
-		new_bmpinfoheader[i] = bmpinfoheader[i];
-   set_4B(new_bmpfileheader, 2, newbiWidth4*newbiHeight + 1078);
-   set_4B(new_bmpinfoheader, 4, biWidth/RATIO);
-   set_4B(new_bmpinfoheader, 8, biHeight/RATIO);
-   set_4B(new_bmpinfoheader, 20, newbiWidth4*newbiHeight);
-
-
-   //
+   //mutiply (a) and original
+   for (i=0; i < biHeight; i++)
+   {
+        k = i* ((biWidth*1 +3)/4 *4);
+		for (j=0; j < biWidth; j++)
+		{
+      int gray = new_data[k] * data[k];
+      if(gray > 255)
+        gray = 255;
+      else if(gray < 0)
+        gray = 0;
+      new_data[k] = gray;
+      k = k+1;
+    }
+   }
+   
    /* �}�ҷs�ɮ� */
-   if( ( output_file = fopen("resize-b.bmp","wb") ) == NULL ){
+   if( ( output_file = fopen("hw4p2-b.bmp","wb") ) == NULL ){
       fprintf(stderr,"Output file can't open.\n");
       exit(0);
-   }
-
-   fwrite(new_bmpfileheader, sizeof(bmpfileheader), 1, output_file);
-   fwrite(new_bmpinfoheader, sizeof(bmpinfoheader), 1, output_file);
-
-   fwrite(color_table, 1024, 1, output_file);
- 
-   fwrite(new_data, newbiWidth4*newbiHeight, 1, output_file);
- 
-   fclose (output_file);
-   
-    // filter output
-   if ((output_file = fopen("filter.bmp", "wb")) == NULL)
-   {
-       fprintf(stderr, "Output file can't open.\n");
-       exit(0);
    }
 
    fwrite(bmpfileheader, sizeof(bmpfileheader), 1, output_file);
    fwrite(bmpinfoheader, sizeof(bmpinfoheader), 1, output_file);
 
    fwrite(color_table, 1024, 1, output_file);
-
-   fwrite(data1, ((biWidth*1 +3)/4 *4)*biHeight*1, 1, output_file);
-
-   fclose(output_file);
-   puts("Press any key to continue");
-   fgetc(stdin);
-   //system("pause");
+ 
+   fwrite(new_data, biWidth*biHeight, 1, output_file);
+ 
+   fclose (output_file);
+   
+    puts("Press any key to continue");
+    fgetc(stdin);
    return 0;
 }
 
