@@ -127,6 +127,7 @@ int main()
         k = i* ((biWidth*1 +3)/4 *4);
 		for (j=0; j < biWidth; j++)
 		{
+      // unknow i convert to j, Degree *(-1)
             double midj = (i-biHeight/2);
             double midi = (j-biWidth/2);
             int newi = (midj*cos(Degree) - midi*sin(Degree)) + biHeight/2;
