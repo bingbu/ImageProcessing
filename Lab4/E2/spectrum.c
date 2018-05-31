@@ -90,7 +90,7 @@ int main()
        }
    }
 
-   if (!FFT2D(c, biHeight, biWidth, 1))
+   if ( !FFT2D(c, biHeight, biWidth, 1) )
    {
 	   printf("Stop!\n");
 	   exit(0);
@@ -148,7 +148,7 @@ int main()
    }
 
    // Spectrum
-   /* ¶}±Ò·sÀÉ®× */
+   /* ï¿½}ï¿½Ò·sï¿½É®ï¿½ */
    if( ( output_file = fopen("spectrum.bmp","wb") ) == NULL ){
       fprintf(stderr,"Output file can't open.\n");
       exit(0);
@@ -164,7 +164,7 @@ int main()
    fclose (output_file);
 
    // Phase
-   /* ¶}±Ò·sÀÉ®× */
+   /* ï¿½}ï¿½Ò·sï¿½É®ï¿½ */
    if( ( output_file = fopen("phase.bmp","wb") ) == NULL ){
       fprintf(stderr,"Output file can't open.\n");
       exit(0);
@@ -199,7 +199,7 @@ int ReadDataSize(char *name)
    INT32 biHeight = 0 ;
    INT16 BitCount = 0 ;
 
-   /* ¶}±ÒÀÉ®× */
+   /* ï¿½}ï¿½ï¿½ï¿½É®ï¿½ */
    if( ( input_file = fopen(name,"rb") ) == NULL ){
       fprintf(stderr,"File can't open.\n");
       exit(0);
@@ -248,7 +248,7 @@ void ReadImageData(char *name, U_CHAR *bmpfileheader, U_CHAR *bmpinfoheader, U_C
    INT32 biClrUsed = 0 ;
    INT32 biClrImp = 0 ;
 
-   /* ¶}±ÒÀÉ®× */
+   /* ï¿½}ï¿½ï¿½ï¿½É®ï¿½ */
    if( ( input_file = fopen(name,"rb") ) == NULL ){
       fprintf(stderr,"File can't open.\n");
       exit(0);
