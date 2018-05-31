@@ -16,12 +16,10 @@ typedef unsigned char U_CHAR;
 #define FREAD(file,buf,sizeofbuf)  \
   ((size_t) fread((void *) (buf), (size_t) 1, (size_t) (sizeofbuf), (file)))
 
-#define Pi 3.1415926
-#define Degree Pi*(5)/180
-
 void set_2B(U_CHAR *array, int offset, INT16 value);
 void set_4B(U_CHAR *array, int offset, INT32 value);
 
+#define Degree  (3.1415926*(-5))/180
 
 int main()
 {
@@ -120,29 +118,40 @@ int main()
       fclose(input_file);
       exit(0);
    }
-
+    //double Degree = (3.1415926*(5))/180;
    // Process the file
    for (i=0; i < biHeight; i++)
    {
         k = i* ((biWidth*1 +3)/4 *4);
 		for (j=0; j < biWidth; j++)
 		{
-      // unknow i convert to j, Degree *(-1)
-            double midj = (i-biHeight/2);
-            double midi = (j-biWidth/2);
-            int newi = (midj*cos(Degree) - midi*sin(Degree)) + biHeight/2;
-            int newj = (midj*sin(Degree) + midi*cos(Degree)) + biWidth/2;
-            if(newi<0 || newj<0 || newi>biHeight || newj>biWidth)
-              continue;
-            int newk = newi*((biWidth +3)/4 *4) + newj;
-            
-            new_data[newk] = data[k];
+      // spatial coordinate
+      // 0 --> y
+      // |
+      // V
+      // x
+      double v = (j -biWidth/2);
+      double w = (i -biHeight/2);
+      // forward mapping
+      // |x y| = |v w| | cos sin|
+      //               |-sin cos|
+      // inverse mapping
+      // |x y| = |v w| |cos -sin|
+      //               |sin  cos|
+      int x = (v*cos(Degree) + w*sin(Degree)) + biWidth/2;
+      int y = (v*sin(Degree)*(-1) + w*cos(Degree)) + biHeight/2;
+      if(y<0 || x<0 || y>biHeight || x>biWidth)
+        continue;
+      int newk = y*((biWidth +3)/4 *4) + x;
+      
+      new_data[k] = data[newk]; // inverse mapping
+      //new_data[newk] = data[k]; // forward mapping
 
-            k = k+1;
+      k = k+1;
 		}
    }
    //mutiply (a) and original
-   for (i=0; i < biHeight; i++)
+   /*for (i=0; i < biHeight; i++)
    {
         k = i* ((biWidth*1 +3)/4 *4);
 		for (j=0; j < biWidth; j++)
@@ -155,10 +164,10 @@ int main()
       new_data[k] = gray;
       k = k+1;
     }
-   }
+   }*/
    
    /* �}�ҷs�ɮ� */
-   if( ( output_file = fopen("hw4p2-b.bmp","wb") ) == NULL ){
+   if( ( output_file = fopen("hw4p2-b-inverse.bmp","wb") ) == NULL ){
       fprintf(stderr,"Output file can't open.\n");
       exit(0);
    }
