@@ -138,20 +138,20 @@ int main()
       // inverse mapping
       // |x y| = |v w| |cos -sin|
       //               |sin  cos|
-      int x = (v*cos(Degree) + w*sin(Degree)) + biWidth/2;
-      int y = (v*sin(Degree)*(-1) + w*cos(Degree)) + biHeight/2;
+      int x = (v*cos(Degree) - w*sin(Degree)) + biWidth/2;
+      int y = (v*sin(Degree) + w*cos(Degree)) + biHeight/2;
       if(y<0 || x<0 || y>biHeight || x>biWidth)
         continue;
       int newk = y*((biWidth +3)/4 *4) + x;
       
-      new_data[k] = data[newk]; // inverse mapping
-      //new_data[newk] = data[k]; // forward mapping
+      //new_data[k] = data[newk]; // inverse mapping
+      new_data[newk] = data[k]; // forward mapping
 
       k = k+1;
 		}
    }
    //mutiply (a) and original
-   /*for (i=0; i < biHeight; i++)
+   for (i=0; i < biHeight; i++)
    {
         k = i* ((biWidth*1 +3)/4 *4);
 		for (j=0; j < biWidth; j++)
@@ -164,10 +164,10 @@ int main()
       new_data[k] = gray;
       k = k+1;
     }
-   }*/
+   }
    
    /* �}�ҷs�ɮ� */
-   if( ( output_file = fopen("hw4p2-b-inverse.bmp","wb") ) == NULL ){
+   if( ( output_file = fopen("hw4p2-b-forward.bmp","wb") ) == NULL ){
       fprintf(stderr,"Output file can't open.\n");
       exit(0);
    }
